@@ -2,6 +2,10 @@
     color: rgb(75, 40, 5);
 }
 
+img {
+    max-width: 100%;
+}
+
 
 html {
     scroll-behavior: smooth;
@@ -16,7 +20,7 @@ h1#H1 {
 button {
     padding: 8px;
     background: coral;
-    border-color: coral;
+    border: none;
     color: white;
     font-weight: bold;
     border-radius: 8px;
@@ -24,9 +28,31 @@ button {
 }
 
 header {
-    height: 11vh;
     background: rgb(206, 33, 97);
+    display: flex;
+    align-items: center;
+
+
+
+    & #logo img {
+        width: 150px
+    }
+
+    & nav {
+        flex-grow: 1;
+
+        & input#hamburger {
+            display: none
+        }
+
+
+        & ul#nav-links {
+            display: flex;
+            justify-content: space-around;
+        }
+    }
 }
+
 
 main {
     padding: 1rem 0;
@@ -100,5 +126,76 @@ footer {
             padding: 8px;
         }
 
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header {
+
+        & #logo img {
+            max-width: 80%;
+        }
+
+        & nav {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            & input#hamburger:checked+#menu_hamburger {
+                & label {
+                    & span.line:nth-child(1) {
+                        transform: translateY(12px) rotate(-45deg);
+                    }
+
+                    & span.line:nth-child(2) {
+                        opacity: 0;
+                    }
+
+                    & span.line:nth-child(3) {
+                        transform: translateY(-12px) rotate(45deg);
+                    }
+
+
+                }
+            }
+
+            & #menu_hamburger {
+                margin-right: 10vw;
+
+                & label {
+                    display: block;
+                    width: 40px;
+                    height: 60px;
+                    position: relative;
+                    cursor: pointer;
+
+                    & span.line {
+                        position: absolute;
+                        border-radius: 8px;
+                        height: 3px;
+                        width: 100%;
+                        background: #f0e4af;
+                        transition: transform 0.5s ease-out;
+                    }
+
+                    & span.line:nth-child(1) {
+                        top: 12px;
+                    }
+
+                    & span.line:nth-child(2) {
+                        top: 24px;
+                    }
+
+                    & span.line:nth-child(3) {
+                        top: 36px;
+                    }
+                }
+            }
+
+            & ul#nav-links {
+                display: none;
+
+            }
+        }
     }
 }
